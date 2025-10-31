@@ -1,3 +1,4 @@
+import { AWESOME_API_KEY } from '@env';
 import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { PickerItem } from '../src/components/Picker';
@@ -7,13 +8,17 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [moedas, setMoedas] = useState([]);
   const [moedaSelecionada, setMoedaSelecionada] = useState(null);
-  
 
   useEffect(() => {
-    async function loadMoedas() {
-      const response = await api.get('all')
-      let arrayMoedas = [];
-      Object.keys(response.data).map((key) => {
+    async function loadMoedas(retryCount = 0) {
+      try {
+        const response = await api.get("all", {
+          params: {
+            token: AWESOME_API_KEY
+          }
+        })
+        let arrayMoedas = [];
+        Object.keys(response.data).map((key) => {
         arrayMoedas.push({
           key: key,
           label: key,
@@ -25,6 +30,11 @@ export default function App() {
       setMoedaSelecionada(arrayMoedas[0].key)
       setLoading(false)
 
+      } catch (error) {
+        console.error("Erro ao carregar moedas:", error.message);
+    }
+
+      
     }
 
     loadMoedas();
@@ -44,7 +54,8 @@ export default function App() {
         <Text style={styles.titulo}>Selecione sua moeda</Text>
         <PickerItem 
           moedas={moedas}
-
+          moedaSelecionada={moedaSelecionada}
+          onChange={(moeda) => setMoedaSelecionada(moeda)}
         />
       </View>
        
