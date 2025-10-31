@@ -1,4 +1,3 @@
-Conversor de moedas
 # 🪙 Conversor de Moedas
 
 Um aplicativo simples em React Native para conversão de valores de diversas moedas para o Real Brasileiro (BRL), utilizando a [Awesome API](https://docs.awesomeapi.com.br/api-de-moedas) para obter as cotações mais recentes.
@@ -34,7 +33,7 @@ Siga os passos abaixo para rodar o projeto em seu ambiente de desenvolvimento.
 
 1. **Clone o repositório:**
    ```bash
-   git clone <URL_DO_SEU_REPOSITORIO>
+   git clone https://github.com/liedsonlm7/conversor_moedas.git
    cd conversor
    ```
 
