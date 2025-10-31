@@ -3,7 +3,6 @@ module.exports = function(api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      // ESTE é o plugin que precisamos!
       ['module:react-native-dotenv', {
         "envName": "APP_ENV",
         "moduleName": "@env",
